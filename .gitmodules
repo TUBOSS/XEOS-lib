@@ -1,0 +1,30 @@
+[submodule "blocks"]
+	path = blocks
+	url = https://github.com/macmade/XEOS-lib-blocks.git
+[submodule "c11"]
+	path = c11
+	url = https://github.com/macmade/XEOS-lib-c11.git
+[submodule "c99"]
+	path = c99
+	url = https://github.com/macmade/XEOS-lib-c99.git
+[submodule "dispatch"]
+	path = dispatch
+	url = https://github.com/macmade/XEOS-lib-dispatch.git
+[submodule "elf"]
+	path = elf
+	url = https://github.com/macmade/XEOS-lib-elf.git
+[submodule "iconv"]
+	path = iconv
+	url = https://github.com/macmade/XEOS-lib-iconv.git
+[submodule "objc"]
+	path = objc
+	url = https://github.com/macmade/XEOS-lib-objc.git
+[submodule "posix"]
+	path = posix
+	url = https://github.com/macmade/XEOS-lib-posix.git
+[submodule "pthread"]
+	path = pthread
+	url = https://github.com/macmade/XEOS-lib-pthread.git
+[submodule "system"]
+	path = system
+	url = https://github.com/macmade/XEOS-lib-system.git
