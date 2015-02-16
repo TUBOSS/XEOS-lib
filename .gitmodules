@@ -28,3 +28,6 @@
 [submodule "system"]
 	path = system
 	url = https://github.com/macmade/XEOS-lib-system.git
+[submodule "make"]
+	path = make
+	url = https://github.com/macmade/XEOS-makefile.git

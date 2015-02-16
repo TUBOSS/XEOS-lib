@@ -59,68 +59,45 @@
 
 # $Id$
 
-include ../../Makefile-Config.mk
+include make/Config.mk
+include make/Targets.mk
 
-#-------------------------------------------------------------------------------
-# Display
-#-------------------------------------------------------------------------------
+PROMPT  := XEOS SOURCE LIB
+DEPS    := 
+FILES   := 
 
-PROMPT              := "    ["$(COLOR_GREEN)" XEOS "$(COLOR_NONE)"]> ["$(COLOR_GREEN)" SRC  "$(COLOR_NONE)"]> ["$(COLOR_GREEN)" LIB  "$(COLOR_NONE)"]>           *** "
-
-#-------------------------------------------------------------------------------
-# Built-in targets
-#-------------------------------------------------------------------------------
-
-# Declaration for phony targets, to avoid problems with local files
-.PHONY: all clean
-
-#-------------------------------------------------------------------------------
-# Phony targets
-#-------------------------------------------------------------------------------
-
-# Build the full project
 all:
 	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS C99 standard library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_C99) && $(MAKE) $(ARGS_MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS C99 library$(COLOR_NONE))
+	@cd c99 && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS C11 library$(COLOR_NONE))
+	@cd c11 && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS POSIX library$(COLOR_NONE))
+	@cd posix && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS POSIX thread library$(COLOR_NONE))
+	@cd pthread && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS iconv library$(COLOR_NONE))
+	@cd iconv && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS system library$(COLOR_NONE))
+	@cd system && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS blocks support library$(COLOR_NONE))
+	@cd blocks && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS dispatch library$(COLOR_NONE))
+	@cd dispatch && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS Objective-C library$(COLOR_NONE))
+	@cd objc && $(MAKE)
+	$(call PRINT,$(COLOR_CYAN)Building the XEOS ELF library$(COLOR_NONE))
+	@cd elf && $(MAKE)
 	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS C11 standard library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_C11) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS POSIX library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_POSIX) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS POSIX Thread library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_PTHREAD) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS IConv library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_ICONV) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS system library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_SYSTEM) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS blocks library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_BLOCKS) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS dispatch library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_DISPATCH) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS Objective-C library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_OBJC) && $(MAKE) $(ARGS_MAKE)
-	
-	@$(PRINT) $(PROMPT)$(COLOR_CYAN)"Building the XEOS ELF library"$(COLOR_NONE)
-	@$(CD) $(PATH_SRC_LIB_ELF) && $(MAKE) $(ARGS_MAKE)
-	
-# Cleans the build files
 clean:
 	
-	@$(CD) $(PATH_SRC_LIB_C99) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_C11) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_POSIX) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_PTHREAD) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_ICONV) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_SYSTEM) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_BLOCKS) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_DISPATCH) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_OBJC) && $(MAKE) $(ARGS_MAKE_CLEAN)
-	@$(CD) $(PATH_SRC_LIB_ELF) && $(MAKE) $(ARGS_MAKE_CLEAN)
+	@cd c99 && $(MAKE) clean
+	@cd c11 && $(MAKE) clean
+	@cd posix && $(MAKE) clean
+	@cd pthread && $(MAKE) clean
+	@cd iconv && $(MAKE) clean
+	@cd system && $(MAKE) clean
+	@cd blocks && $(MAKE) clean
+	@cd dispatch && $(MAKE) clean
+	@cd objc && $(MAKE) clean
+	@cd elf && $(MAKE) clean
