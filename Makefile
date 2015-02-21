@@ -62,42 +62,17 @@
 include make/Config.mk
 include make/Targets.mk
 
+.NOTPARALLEL:
+
 PROMPT  := XEOS SOURCE LIB
 DEPS    := 
 FILES   := 
+TARGETS := c99 c11 posix pthread iconv system blocks dispatch objc elf
 
-all:
+all: build-sub
 	
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS C99 library$(COLOR_NONE))
-	@cd c99 && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS C11 library$(COLOR_NONE))
-	@cd c11 && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS POSIX library$(COLOR_NONE))
-	@cd posix && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS POSIX thread library$(COLOR_NONE))
-	@cd pthread && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS iconv library$(COLOR_NONE))
-	@cd iconv && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS system library$(COLOR_NONE))
-	@cd system && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS blocks support library$(COLOR_NONE))
-	@cd blocks && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS dispatch library$(COLOR_NONE))
-	@cd dispatch && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS Objective-C library$(COLOR_NONE))
-	@cd objc && $(MAKE)
-	$(call PRINT,$(COLOR_CYAN)Building the XEOS ELF library$(COLOR_NONE))
-	@cd elf && $(MAKE)
+	@:
+
+clean: clean-sub
 	
-clean:
-	
-	@cd c99 && $(MAKE) clean
-	@cd c11 && $(MAKE) clean
-	@cd posix && $(MAKE) clean
-	@cd pthread && $(MAKE) clean
-	@cd iconv && $(MAKE) clean
-	@cd system && $(MAKE) clean
-	@cd blocks && $(MAKE) clean
-	@cd dispatch && $(MAKE) clean
-	@cd objc && $(MAKE) clean
-	@cd elf && $(MAKE) clean
+	@:
