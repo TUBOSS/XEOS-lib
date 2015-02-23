@@ -67,7 +67,7 @@ include make/Targets.mk
 PROMPT  := XEOS SOURCE LIB
 DEPS    := 
 FILES   := 
-TARGETS := c99 c11 posix pthread iconv system blocks dispatch objc elf
+TARGETS := libc99 libc11 libposix libpthread libiconv libsystem libblocks libdispatch libobjc libelf
 
 all: build-sub archives
 	
@@ -81,13 +81,13 @@ distclean: distclean-sub
 	
 	@:
 
-archives: _LIBS = $(foreach _A,$(ARCHS),$(foreach _L,$(TARGETS),$(patsubst %,$(DIR_BUILD)$(_A)/lib%$(EXT_LIB_STATIC),$(_L))))
+archives: _LIBS = $(foreach _A,$(ARCHS),$(foreach _L,$(TARGETS),$(patsubst %,$(DIR_BUILD)$(_A)/%$(EXT_LIB_STATIC),$(_L))))
 archives: $$(_LIBS)
 	
 	@:
 
 $(DIR_BUILD)%$(EXT_LIB_STATIC): _ARCH         = $(firstword $(subst /, ,$*))
-$(DIR_BUILD)%$(EXT_LIB_STATIC): _TARGET       = $(patsubst lib%,%,$(lastword $(subst /, ,$*)))
+$(DIR_BUILD)%$(EXT_LIB_STATIC): _TARGET       = $(lastword $(subst /, ,$*))
 $(DIR_BUILD)%$(EXT_LIB_STATIC): _OBJ          = $(_TARGET)/$(DIR_BUILD)$(_ARCH)$(EXT_OBJ)
 $(DIR_BUILD)%$(EXT_LIB_STATIC): _AR           = $(AR_$(_ARCH))
 $(DIR_BUILD)%$(EXT_LIB_STATIC): _FLAGS_AR     = $(ARGS_AR_$(_ARCH))
@@ -95,6 +95,6 @@ $(DIR_BUILD)%$(EXT_LIB_STATIC): _RANLIB       = $(RANLIB_$(_ARCH))
 $(DIR_BUILD)%$(EXT_LIB_STATIC): _FLAGS_RANLIB = $(ARGS_RANLIB_$(_ARCH))
 $(DIR_BUILD)%$(EXT_LIB_STATIC): $$(shell mkdir -p $$(DIR_BUILD)$$(_ARCH)) FORCE
 	
-	$(call PRINT_FILE,$(_ARCH),$(COLOR_CYAN)Creating static library$(COLOR_NONE),$(COLOR_YELLOW)lib$(_TARGET)$(EXT_LIB_STATIC)$(COLOR_NONE))
+	$(call PRINT_FILE,$(_ARCH),$(COLOR_CYAN)Creating static library$(COLOR_NONE),$(COLOR_YELLOW)$(_TARGET)$(EXT_LIB_STATIC)$(COLOR_NONE))
 	@$(_AR) $(_FLAGS_AR) $@ $(_OBJ)
 	@$(_RANLIB) $(_FLAGS_RANLIB) $@
